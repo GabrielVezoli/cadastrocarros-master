@@ -1,0 +1,43 @@
+unit uFrmPrincipal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.jpeg,
+  Vcl.StdCtrls, uFrmMenu;
+
+type
+  TFrmPrincipal = class(TForm)
+    Image1: TImage;
+    BtnEntrar: TButton;
+    procedure BtnEntrarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FrmPrincipal: TFrmPrincipal;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFrmPrincipal.BtnEntrarClick(Sender: TObject);
+begin
+  try
+    FrmMenu := TFrmMenu.Create(Self);
+
+    FrmPrincipal.Close;
+
+    FrmMenu.ShowModal;
+  finally
+    FreeAndNil(FrmMenu);
+    FrmPrincipal.Close;
+  end;
+end;
+
+end.

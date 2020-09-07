@@ -1,0 +1,19 @@
+program Cadastro_Carros;
+
+uses
+  Vcl.Forms,
+  uFrmPrincipal in '..\Sources\uFrmPrincipal.pas' {FrmPrincipal},
+  uFrmMenu in '..\Sources\uFrmMenu.pas' {FrmMenu},
+  uCarro in '..\Sources\uCarro.pas',
+  uCarro2P in '..\Sources\uCarro2P.pas',
+  uCarro4P in '..\Sources\uCarro4P.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TFrmPrincipal, FrmPrincipal);
+  Application.CreateForm(TFrmMenu, FrmMenu);
+  Application.Run;
+end.
