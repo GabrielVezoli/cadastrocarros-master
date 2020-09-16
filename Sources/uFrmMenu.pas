@@ -6,14 +6,11 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Menus,
-  Vcl.Imaging.jpeg, uCarro, uPesquisa;
+  Vcl.Imaging.jpeg, uCarro, uPesquisa, Vcl.Mask, Vcl.DBCtrls, Data.DB,
+  Vcl.Grids, Vcl.DBGrids, uConnection;
 
 type
   TFrmMenu = class(TForm)
-    EdtMarca: TEdit;
-    EdtModelo: TEdit;
-    EdtCor: TEdit;
-    EdtAnoFabri: TEdit;
     Panel1: TPanel;
     Timer1: TTimer;
     MainMenu1: TMainMenu;
@@ -24,14 +21,24 @@ type
     LblHora: TLabel;
     BtnCadastrar: TButton;
     Image1: TImage;
-    LblMarca: TLabel;
+    Label2: TLabel;
+    DBEMarca: TDBEdit;
+    DataSource1: TDataSource;
     Label3: TLabel;
+    DBEModelo: TDBEdit;
     Label4: TLabel;
+    DBECor: TDBEdit;
     Label5: TLabel;
+    DBEAnoFabri: TDBEdit;
+    DBGrid1: TDBGrid;
+    Label6: TLabel;
+    DBECodigo: TDBEdit;
+    BtnCriar: TButton;
     procedure Timer1Timer(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure BtnCadastrarClick(Sender: TObject);
     procedure Consultarcarro1Click(Sender: TObject);
+    procedure BtnCriarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -42,50 +49,52 @@ var
   FrmMenu: TFrmMenu;
   Carro: TCarro;
   Pesquisa: TFrmPesquisa;
+  Connection: TDataModule1;
 
 implementation
 
 {$R *.dfm}
 
 procedure TFrmMenu.BtnCadastrarClick(Sender: TObject);
-var
-  Veiculos: array [1 .. 100] of Integer;
-  I: Integer;
 begin
   try
-    if (EdtMarca.Modified = True) and (EdtModelo.Modified = True) and
-      (EdtCor.Modified = True) and (EdtAnoFabri.Modified = True) then
+    if (DBEMarca.Modified = True) and (DBEModelo.Modified = True) and
+      (DBECor.Modified = True) and (DBEAnoFabri.Modified = True) and
+      (DBECodigo.Modified = True) then
     begin
-      for I := 1 to High(Veiculos) do
-        Carro := TCarro.Create;
-
-      Carro.Marca := EdtMarca.Text;
-      Carro.Modelo := EdtModelo.Text;
-      Carro.Cor := EdtCor.Text;
-      Carro.AnoFabricacao := EdtAnoFabri.Text;
+      Carro.Codigo := StrToInt(DBECodigo.Text);
+      Carro.Marca := DBEMarca.Text;
+      Carro.Modelo := DBEModelo.Text;
+      Carro.Cor := DBECor.Text;
+      Carro.AnoFabricacao := DBEAnoFabri.Text;
 
       ShowMessage('Marca: ' + Carro.Marca + #13 + 'Modelo: ' + Carro.Modelo +
         #13 + 'Cor: ' + Carro.Cor + #13 + 'Ano de Fabricação: ' +
         Carro.AnoFabricacao + #13);
-      Veiculos[I] := I + 1;
-      exit
+
+    Connection.FDTable1.Append;
     end
     else
       MessageDlg('Insira todos os campos!', mtError, [mbOK], 0);
   finally
-    FreeAndNil(Carro);
-    EdtMarca.Clear;
-    EdtModelo.Clear;
-    EdtCor.Clear;
-    EdtAnoFabri.Clear;
+    DBEMarca.Clear;
+    DBEModelo.Clear;
+    DBECor.Clear;
+    DBEAnoFabri.Clear;
+    DBECodigo.Clear;
   end;
+end;
+
+procedure TFrmMenu.BtnCriarClick(Sender: TObject);
+begin
+  Connection.FDTable1.Append;
 end;
 
 procedure TFrmMenu.Consultarcarro1Click(Sender: TObject);
 begin
   try
-  Pesquisa := TFrmPesquisa.Create(Self);
-  Pesquisa.ShowModal;
+    Pesquisa := TFrmPesquisa.Create(Self);
+    Pesquisa.ShowModal;
   finally
     FreeAndNil(Pesquisa);
   end;

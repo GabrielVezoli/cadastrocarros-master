@@ -15,26 +15,10 @@ object FrmPesquisa: TFrmPesquisa
   Position = poScreenCenter
   PixelsPerInch = 96
   TextHeight = 13
-  object ListBox1: TListBox
-    Left = 8
-    Top = 35
-    Width = 166
-    Height = 177
-    ItemHeight = 13
-    TabOrder = 0
-  end
-  object EdtPesquisa: TEdit
-    Left = 8
-    Top = 8
-    Width = 121
-    Height = 21
-    TabOrder = 1
-    TextHint = 'Pesquisa'
-  end
   object BtnBusca: TButton
-    Left = 134
+    Left = 144
     Top = 8
-    Width = 40
+    Width = 43
     Height = 21
     Caption = 'Busca'
     Font.Charset = DEFAULT_CHARSET
@@ -43,7 +27,13 @@ object FrmPesquisa: TFrmPesquisa
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 2
-    OnClick = BtnBuscaClick
+    TabOrder = 0
+  end
+  object MMBuscaV: TMemo
+    Left = 2
+    Top = 35
+    Width = 185
+    Height = 187
+    TabOrder = 1
   end
 end

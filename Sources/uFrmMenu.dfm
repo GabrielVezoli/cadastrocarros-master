@@ -2514,10 +2514,7 @@ object FrmMenu: TFrmMenu
       54B1A8B0E7B8C7C5BC67F6FBFE9ACDF1A54B2472E667F7FB9C793A9F33F5C785
       FE53E9F518E0493CCE14AA8161EC2F8F0B7358302751209E3E63FA6B8D05C33F
       CF5FAE3D2FF29F4FA8C69C702C4F5F9616A2ADB90F2FCB1FFFD9}
-    ExplicitLeft = 272
-    ExplicitTop = 136
-    ExplicitWidth = 105
-    ExplicitHeight = 105
+    ExplicitLeft = 191
   end
   object Panel1: TPanel
     Left = 0
@@ -2526,70 +2523,95 @@ object FrmMenu: TFrmMenu
     Height = 329
     Align = alLeft
     TabOrder = 0
-    object LblMarca: TLabel
-      Left = 24
-      Top = 5
-      Width = 33
+    object Label2: TLabel
+      Left = 8
+      Top = 56
+      Width = 29
       Height = 13
-      Caption = 'Marca:'
+      Caption = 'marca'
+      FocusControl = DBEMarca
     end
     object Label3: TLabel
-      Left = 24
-      Top = 85
-      Width = 38
+      Left = 8
+      Top = 96
+      Width = 34
       Height = 13
-      Caption = 'Modelo:'
+      Caption = 'modelo'
+      FocusControl = DBEModelo
     end
     object Label4: TLabel
-      Left = 24
-      Top = 167
-      Width = 21
+      Left = 8
+      Top = 136
+      Width = 15
       Height = 13
-      Caption = 'Cor:'
+      Caption = 'cor'
+      FocusControl = DBECor
     end
     object Label5: TLabel
-      Left = 24
-      Top = 245
-      Width = 93
+      Left = 8
+      Top = 176
+      Width = 68
       Height = 13
-      Caption = 'Ano de Fabrica'#231#227'o:'
+      Caption = 'anofabricacao'
+      FocusControl = DBEAnoFabri
     end
-    object EdtMarca: TEdit
-      Left = 24
-      Top = 24
-      Width = 121
+    object Label6: TLabel
+      Left = 8
+      Top = 10
+      Width = 31
+      Height = 13
+      Caption = 'codigo'
+      FocusControl = DBECodigo
+    end
+    object DBEMarca: TDBEdit
+      Left = 8
+      Top = 75
+      Width = 165
       Height = 21
+      DataField = 'marca'
+      DataSource = DataSource1
       TabOrder = 0
-      TextHint = 'Marca'
     end
-    object EdtModelo: TEdit
-      Left = 24
-      Top = 104
-      Width = 121
+    object DBEModelo: TDBEdit
+      Left = 8
+      Top = 115
+      Width = 165
       Height = 21
+      DataField = 'modelo'
+      DataSource = DataSource1
       TabOrder = 1
-      TextHint = 'Modelo'
     end
-    object EdtCor: TEdit
-      Left = 24
-      Top = 186
-      Width = 121
+    object DBECor: TDBEdit
+      Left = 8
+      Top = 155
+      Width = 165
       Height = 21
+      DataField = 'cor'
+      DataSource = DataSource1
       TabOrder = 2
-      TextHint = 'Cor'
     end
-    object EdtAnoFabri: TEdit
-      Left = 24
-      Top = 264
-      Width = 121
+    object DBEAnoFabri: TDBEdit
+      Left = 8
+      Top = 192
+      Width = 165
       Height = 21
+      DataField = 'anofabricacao'
+      DataSource = DataSource1
       TabOrder = 3
-      TextHint = 'Ano de Fabrica'#231#227'o'
+    end
+    object DBECodigo: TDBEdit
+      Left = 8
+      Top = 29
+      Width = 165
+      Height = 21
+      DataField = 'codigo'
+      DataSource = DataSource1
+      TabOrder = 4
     end
   end
   object Panel2: TPanel
     Left = 532
-    Top = 8
+    Top = 134
     Width = 105
     Height = 25
     Color = clSkyBlue
@@ -2638,6 +2660,66 @@ object FrmMenu: TFrmMenu
     TabOrder = 2
     OnClick = BtnCadastrarClick
   end
+  object DBGrid1: TDBGrid
+    Left = 191
+    Top = 8
+    Width = 444
+    Height = 120
+    DataSource = DataSource1
+    TabOrder = 3
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'codigo'
+        Width = 41
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'marca'
+        Width = 95
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'modelo'
+        Width = 90
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'cor'
+        Width = 94
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'anofabricacao'
+        Width = 136
+        Visible = True
+      end>
+  end
+  object BtnCriar: TButton
+    Left = 452
+    Top = 217
+    Width = 185
+    Height = 49
+    Cursor = crHandPoint
+    Caption = 'CRIAR'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -24
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 4
+    OnClick = BtnCriarClick
+  end
   object Timer1: TTimer
     OnTimer = Timer1Timer
     Left = 216
@@ -2653,5 +2735,10 @@ object FrmMenu: TFrmMenu
         OnClick = Consultarcarro1Click
       end
     end
+  end
+  object DataSource1: TDataSource
+    DataSet = DataModule1.FDTable1
+    Left = 368
+    Top = 264
   end
 end

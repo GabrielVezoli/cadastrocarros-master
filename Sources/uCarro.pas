@@ -6,20 +6,24 @@ type
   TCarro = class
 
   private
+    FCodigo: Integer;
     FMarca: String;
     FModelo: String;
     FCor: String;
     FAnoFabricacao: String;
+    procedure setCodigo(value: Integer);
     procedure setMarca(value: String);
     procedure setModelo(value: String);
     procedure setCor(value: String);
     procedure setAnoFabricacao(value: String);
+    function getCodigo: Integer;
     function getMarca: String;
     function getModelo: String;
     function getCor: String;
     function getAnoFabricacao: String;
 
   public
+    property Codigo: Integer read getCodigo write setCodigo;
     property Marca: String read getMarca write setMarca;
     property Modelo: String read getModelo write setModelo;
     property Cor: String read getCor write setCor;
@@ -33,6 +37,11 @@ implementation
 function TCarro.getAnoFabricacao: String;
 begin
   Result := FAnoFabricacao;
+end;
+
+function TCarro.getCodigo: Integer;
+begin
+  Result := FCodigo;
 end;
 
 function TCarro.getCor: String;
@@ -53,6 +62,11 @@ end;
 procedure TCarro.setAnoFabricacao(value: String);
 begin
   FAnoFabricacao := value;
+end;
+
+procedure TCarro.setCodigo(value: Integer);
+begin
+  FCodigo := Value;
 end;
 
 procedure TCarro.setCor(value: String);

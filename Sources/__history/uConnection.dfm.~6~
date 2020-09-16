@@ -1,0 +1,15 @@
+object DataModule1: TDataModule1
+  OldCreateOrder = False
+  Height = 218
+  Width = 333
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      'Database=CadastroCarros'
+      'User_Name=postgres'
+      'Password=123456'
+      'Server=localhost'
+      'DriverID=PG')
+    Left = 32
+    Top = 16
+  end
+end

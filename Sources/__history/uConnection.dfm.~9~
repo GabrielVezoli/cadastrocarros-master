@@ -1,0 +1,27 @@
+object DataModule1: TDataModule1
+  OldCreateOrder = False
+  Height = 218
+  Width = 333
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      'Database=CadastroCarros'
+      'User_Name=postgres'
+      'Password=123456'
+      'Server=localhost'
+      'DriverID=PG')
+    Left = 48
+    Top = 16
+  end
+  object SQLQuery1: TSQLQuery
+    Params = <>
+    SQL.Strings = (
+      'select codigo, marca, modelo, cor, anofabricacao from Carros')
+    Left = 152
+    Top = 16
+  end
+  object DataSource1: TDataSource
+    DataSet = SQLQuery1
+    Left = 256
+    Top = 16
+  end
+end

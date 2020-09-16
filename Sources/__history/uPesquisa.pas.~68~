@@ -1,0 +1,48 @@
+unit uPesquisa;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uCarro, Vcl.StdCtrls, Vcl.WinXCtrls;
+
+type
+  TFrmPesquisa = class(TForm)
+    EdtPesquisa: TEdit;
+    BtnBusca: TButton;
+    MMBuscaV: TMemo;
+    procedure BtnBuscaClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FrmPesquisa: TFrmPesquisa;
+
+implementation
+
+{$R *.dfm}
+
+uses uFrmMenu;
+
+procedure TFrmPesquisa.BtnBuscaClick(Sender: TObject);
+var
+  I: Integer;
+begin
+  for I := 0 to T - 1 do
+    begin
+      Carro := VetorCar[I];
+
+      MMBuscaV.Lines.Add('');
+
+      MMBuscaV.Lines.Add(Carro.Marca);
+      MMBuscaV.Lines.Add(Carro.Modelo);
+      MMBuscaV.Lines.Add(Carro.Cor);
+      MMBuscaV.Lines.Add(Carro.AnoFabricacao)
+    end
+end;
+
+end.
